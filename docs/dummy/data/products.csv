@@ -1,0 +1,11 @@
+product_id,name,description,is_fresh,allergen_checked,status,shipping_policy_id,updated_at
+P-0113,대구사과칩,팔공산 사과 100%를 저온에서 말린 과자. 설탕 · 첨가물 없음,false,false,active,S-01,2026-11-02
+P-0127,팔공산 꿀사과,팔공산 해발 400m 과수원의 부사. 당도 14Brix 이상 선별,true,true,active,S-01,2026-11-02
+P-0205,성주 참외,성주 하우스 참외 특품,true,true,active,S-01,2026-11-02
+P-0207,참외청,성주 참외와 비정제 원당을 1:1로 재운 청. 탄산수 희석 비율 1:4,false,true,active,S-01,2026-11-02
+P-0305,청도 반건시,"청도 감을 20일 자연 건조한 반건시. 겉은 쫀득, 속은 촉촉",false,true,active,S-01,2026-11-02
+P-0312,의성 마늘,의성 한지형 마늘. 알이 단단하고 매운맛이 강함,true,true,active,S-01,2026-11-02
+P-0318,흑마늘 진액,의성 마늘을 15일 숙성한 흑마늘 추출액. 하루 1포 권장,false,true,active,S-01,2026-11-02
+P-0402,서문시장 납작만두,"서문시장식 납작만두. 당면 · 부추 소, 간장 양념 포함",false,true,active,S-01,2026-11-02
+P-0410,달성 토마토,달성군 하빈면 완숙 토마토. 산도가 낮아 생식용,true,true,active,S-01,2026-11-02
+P-0421,경산 대추칩,경산 대추를 씨 빼고 말린 칩. 차로 우려도 됨(80℃ 물 300ml에 5조각),false,false,active,S-01,2026-11-02

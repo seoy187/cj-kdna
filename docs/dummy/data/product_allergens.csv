@@ -1,0 +1,6 @@
+product_id,allergen,type
+P-0113,견과류,cross_contact
+P-0402,밀,contains
+P-0402,대두,contains
+P-0402,계란,cross_contact
+P-0421,견과류,cross_contact
