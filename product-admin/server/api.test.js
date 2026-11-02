@@ -19,8 +19,8 @@ const validProduct = () => ({
   allergens: [],
 });
 
-async function withServer(store, run) {
-  const server = createApi(store).listen(0, '127.0.0.1');
+async function withServer(store, run, options) {
+  const server = createApi(store, options).listen(0, '127.0.0.1');
   await new Promise((resolve) => server.once('listening', resolve));
   try {
     await run(`http://127.0.0.1:${server.address().port}`);
@@ -96,6 +96,21 @@ test('다른 사이트에서 온 요청은 막는다', async () => {
     const foreign = await fetch(`${base}/products`, { headers: { Origin: 'https://evil.example' } });
     assert.equal(foreign.status, 403);
   });
+});
+
+test('배포본은 같은 주소의 요청만 받고, 로그인 없이 삭제할 수 있다', async () => {
+  const store = { list: async () => [], remove: async () => true };
+  await withServer(store, async (base) => {
+    const noOrigin = await fetch(`${base}/products`);
+    assert.equal(noOrigin.status, 200);
+    const same = await fetch(`${base}/products/P-9001`, { method: 'DELETE', headers: { Origin: base } });
+    assert.equal(same.status, 204);
+    const foreign = await fetch(`${base}/products/P-9001`, {
+      method: 'DELETE',
+      headers: { Origin: 'https://evil.example' },
+    });
+    assert.equal(foreign.status, 403);
+  }, { deployed: true });
 });
 
 test('설정이 없으면 안내를 돌려주고, 코드 중복은 409로 알린다', async () => {

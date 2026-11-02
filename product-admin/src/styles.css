@@ -167,6 +167,7 @@ legend { padding: 0 4px; font-size: 13px; color: var(--subtle); }
 }
 .error-box p { margin: 0; }
 .notice { padding: 8px 12px; color: var(--accent); background: var(--selected); border-radius: 6px; }
+.demo-note { margin: 16px 0 0; padding: 8px 12px; color: var(--warn); background: var(--warn-bg); border-radius: 6px; }
 
 @media (max-width: 960px) {
   .app { padding: 16px; }

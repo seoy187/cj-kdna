@@ -102,6 +102,15 @@ function localOnly(req, res, next) {
   next();
 }
 
+// 배포본은 호스트가 정해져 있지 않으므로, 페이지와 같은 주소에서 온 요청만 받는다
+function sameOriginOnly(req, res, next) {
+  const origin = req.headers.origin;
+  if (origin && origin.replace(/^https?:\/\//, '') !== req.headers.host) {
+    return res.status(403).json({ error: '다른 사이트에서는 사용할 수 없습니다.' });
+  }
+  next();
+}
+
 function sendStoreError(res, error) {
   if (error?.code === '23505') {
     return res.status(409).json({ error: '이미 있는 상품 코드이거나 중복된 값이 있습니다.' });
@@ -116,14 +125,18 @@ function sendStoreError(res, error) {
   return res.status(502).json({ error: `Supabase 요청 실패: ${error?.message ?? '알 수 없는 오류'}` });
 }
 
-export function createApi(store) {
+export function createApi(store, { deployed = false } = {}) {
   const app = express();
-  app.use(localOnly);
+  app.use(deployed ? sameOriginOnly : localOnly);
   app.use(express.json({ limit: '200kb' }));
 
   app.use((req, res, next) => {
     if (store) return next();
-    res.status(503).json({ error: '.env.local에 SUPABASE_URL과 SUPABASE_SECRET_KEY를 넣고 서버를 다시 시작하세요.' });
+    res.status(503).json({
+      error: deployed
+        ? 'Vercel 환경 변수에 SUPABASE_URL과 SUPABASE_SECRET_KEY를 넣고 다시 배포하세요.'
+        : '.env.local에 SUPABASE_URL과 SUPABASE_SECRET_KEY를 넣고 서버를 다시 시작하세요.',
+    });
   });
 
   app.get('/products', async (req, res) => {

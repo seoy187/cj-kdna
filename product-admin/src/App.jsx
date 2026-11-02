@@ -99,6 +99,13 @@ export default function App() {
         </button>
       </header>
 
+      {import.meta.env.PROD && (
+        <p className="demo-note">
+          실습용 가상 상품입니다. 실제로 판매하지 않으며, 가격 · 알레르기 정보도 실제가 아닙니다.
+          로그인 없이 누구나 추가 · 삭제할 수 있으니 중요한 내용을 넣지 마세요.
+        </p>
+      )}
+
       <div className="filters" role="search">
         <label className="grow">
           검색

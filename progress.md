@@ -9,3 +9,5 @@
 - 2026-11-02: Supabase용 SQL 작성(미실행, 사용자가 직접 실행) → `docs/dummy/supabase/`
 - 2026-11-02: 알레르기 상품 조회 SQL 작성(미실행) → `docs/dummy/supabase/queries/products_with_allergens.sql`
 - 2026-11-02: 로컬 상품 관리 웹페이지 작성, Supabase 조회 확인(추가 · 삭제는 실제 DB에서 미확인) → `product-admin/`
+- 2026-11-02: GitHub `seoy187/cj-kdna`(공개)에 연동, 기존 내용을 교체해 푸시
+- 2026-11-02: Vercel 배포 준비, 로그인 없이 누구나 추가 · 삭제(미배포) → `product-admin/`
